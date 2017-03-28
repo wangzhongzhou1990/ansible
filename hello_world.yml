@@ -1,7 +1,7 @@
-- name: Hello World Sample
-  hosts: all
+- hosts: servers
+  vars:
+    user: wzz2
   tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello World!"
+  - name: create new user {{ user }}
+    user: name={{ user }} shell=/bin/bash groups=test, password={{ '12345678' |password_hash('sha512') }} update_password=always append=yes
 
